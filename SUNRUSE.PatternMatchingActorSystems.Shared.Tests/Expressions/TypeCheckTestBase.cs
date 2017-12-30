@@ -43,5 +43,18 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             var evaluated = compiled();
             Assert.Equal(ReturnsTrueFor.Contains(testData), evaluated);
         }
+
+        [Fact]
+        public void ToExpressionBodyMismatch()
+        {
+            var expression = CreateInstance(new ExpressionMock(default(Mismatch)));
+
+            var expressionBody = expression.ToExpressionBody();
+
+            var cast = Expression.Convert(expressionBody, typeof(Mismatch));
+            var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
+            var compiled = wrapped.Compile();
+            compiled(); // Throws if not castable.
+        }
     }
 }

@@ -23,16 +23,24 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         public Expression ToExpressionBody()
         {
             var arrayExpressionBody = Array.ToExpressionBody();
-            return Expression.AndAlso
+            return Expression.Condition
             (
-                Expression.TypeIs(arrayExpressionBody, typeof(IEnumerable)),
-                Expression.Not
-                (
-                    Expression.OrElse
+                Expression.TypeIs(arrayExpressionBody, typeof(Mismatch)),
+                Expression.Convert(arrayExpressionBody, typeof(object)),
+                Expression.Convert(
+                    Expression.AndAlso
                     (
-                        Expression.TypeIs(arrayExpressionBody, typeof(string)),
-                        Expression.TypeIs(arrayExpressionBody, typeof(IEnumerable<KeyValuePair<string, object>>))
-                    )
+                        Expression.TypeIs(arrayExpressionBody, typeof(IEnumerable)),
+                        Expression.Not
+                        (
+                            Expression.OrElse
+                            (
+                                Expression.TypeIs(arrayExpressionBody, typeof(string)),
+                                Expression.TypeIs(arrayExpressionBody, typeof(IEnumerable<KeyValuePair<string, object>>))
+                            )
+                        )
+                    ),
+                    typeof(object)
                 )
             );
         }

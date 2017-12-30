@@ -37,7 +37,8 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             PositiveInteger,
             LargePositiveInteger,
             NegativeInteger,
-            LargeNegativeInteger
+            LargeNegativeInteger,
+            Mismatch
         }
 
         public static readonly ImmutableDictionary<TestData, object> TestDataValues = ImmutableDictionary<TestData, object>.Empty
@@ -55,6 +56,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             .Add(TestData.PositiveInteger, 4)
             .Add(TestData.LargePositiveInteger, 19)
             .Add(TestData.NegativeInteger, -5)
-            .Add(TestData.LargeNegativeInteger, -17);
+            .Add(TestData.LargeNegativeInteger, -17)
+            .Add(TestData.Mismatch, default(Mismatch));
     }
 }

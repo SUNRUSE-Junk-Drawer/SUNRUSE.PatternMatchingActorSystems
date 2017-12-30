@@ -23,7 +23,13 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         /// <inheritdoc />
         public Expression ToExpressionBody()
         {
-            return Expression.TypeIs(Integer.ToExpressionBody(), typeof(int));
+            var integerExpressionBody = Integer.ToExpressionBody();
+            return Expression.Condition
+            (
+                Expression.TypeIs(integerExpressionBody, typeof(Mismatch)),
+                Expression.Convert(integerExpressionBody, typeof(object)),
+                Expression.Convert(Expression.TypeIs(integerExpressionBody, typeof(int)), typeof(object))
+            );
         }
     }
 }
