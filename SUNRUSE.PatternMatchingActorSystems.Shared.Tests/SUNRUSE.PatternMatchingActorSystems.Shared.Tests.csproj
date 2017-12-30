@@ -13,4 +13,8 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SUNRUSE.PatternMatchingActorSystems.Shared\SUNRUSE.PatternMatchingActorSystems.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
