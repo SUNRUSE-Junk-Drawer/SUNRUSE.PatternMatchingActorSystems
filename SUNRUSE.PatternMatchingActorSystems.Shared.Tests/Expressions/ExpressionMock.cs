@@ -18,7 +18,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
         public Expression ToExpressionBody()
         {
-            return Expression.Constant(Value);
+            return Expression.Constant(Value, typeof(object));
         }
 
         public enum TestData
