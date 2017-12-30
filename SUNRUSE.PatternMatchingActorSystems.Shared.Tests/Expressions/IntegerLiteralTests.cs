@@ -17,8 +17,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(int));
-            var wrapped = Expression.Lambda<Func<int>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
             var evaluated = compiled();
             Assert.Equal(235455, evaluated);

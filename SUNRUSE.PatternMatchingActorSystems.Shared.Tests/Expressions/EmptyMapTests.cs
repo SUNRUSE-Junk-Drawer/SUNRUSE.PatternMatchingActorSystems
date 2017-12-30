@@ -17,11 +17,12 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(IEnumerable<KeyValuePair<string, object>>));
-            var wrapped = Expression.Lambda<Func<IEnumerable<KeyValuePair<string, object>>>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
             var evaluated = compiled();
-            Assert.Empty(evaluated);
+            var asMap = evaluated as IEnumerable<KeyValuePair<string, object>>;
+            Assert.NotNull(asMap);
+            Assert.Empty(asMap);
         }
 
         [Fact]

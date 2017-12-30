@@ -37,8 +37,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(bool));
-            var wrapped = Expression.Lambda<Func<bool>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
             var evaluated = compiled();
             Assert.Equal(ReturnsTrueFor.Contains(testData), evaluated);
@@ -76,10 +75,10 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(Mismatch));
-            var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
-            compiled(); // Throws if not castable.
+            var evaluated = compiled();
+            Assert.IsType<Mismatch>(evaluated);
         }
 
         [Fact]

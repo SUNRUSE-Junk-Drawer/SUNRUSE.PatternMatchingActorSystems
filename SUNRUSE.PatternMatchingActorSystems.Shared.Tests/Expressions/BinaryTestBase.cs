@@ -263,8 +263,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(object));
-            var wrapped = Expression.Lambda<Func<object>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
             var evaluated = compiled();
             if (match == null)
@@ -534,10 +533,10 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(Mismatch));
-            var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
-            compiled(); // Throws if not castable.
+            var evaluated = compiled();
+            Assert.IsType<Mismatch>(evaluated);
         }
 
         [Theory]
@@ -587,10 +586,10 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(Mismatch));
-            var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
-            compiled(); // Throws if not castable.
+            var evaluated = compiled();
+            Assert.IsType<Mismatch>(evaluated);
         }
 
         [Theory]
@@ -625,10 +624,10 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
 
             var expressionBody = expression.ToExpressionBody();
 
-            var cast = Expression.Convert(expressionBody, typeof(Mismatch));
-            var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
+            var wrapped = Expression.Lambda<Func<object>>(expressionBody);
             var compiled = wrapped.Compile();
-            compiled(); // Throws if not castable.
+            var evaluated = compiled();
+            Assert.IsType<Mismatch>(evaluated);
         }
 
         [Fact]
