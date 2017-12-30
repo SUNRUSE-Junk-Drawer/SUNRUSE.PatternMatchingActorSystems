@@ -26,7 +26,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             return Expression.Condition
             (
                 Expression.TypeIs(arrayExpressionBody, typeof(Mismatch)),
-                Expression.Convert(arrayExpressionBody, typeof(object)),
+                arrayExpressionBody,
                 Expression.Convert(
                     Expression.AndAlso
                     (

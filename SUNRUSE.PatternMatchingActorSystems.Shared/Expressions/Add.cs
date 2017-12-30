@@ -27,7 +27,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         /// <inheritdoc />
         public Expression ToExpressionBody()
         {
-            var leftExpressionBody = Expression.Convert(Left.ToExpressionBody(), typeof(object));
+            var leftExpressionBody = Left.ToExpressionBody();
             var leftIsInteger = Expression.TypeIs(leftExpressionBody, typeof(int));
             var leftIsString = Expression.TypeIs(leftExpressionBody, typeof(string));
             var leftIsArray = Expression.AndAlso
@@ -35,7 +35,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
                 Expression.TypeIs(leftExpressionBody, typeof(IEnumerable<object>)),
                 Expression.Not(Expression.TypeIs(leftExpressionBody, typeof(IEnumerable<KeyValuePair<string, object>>)))
             );
-            var rightExpressionBody = Expression.Convert(Right.ToExpressionBody(), typeof(object));
+            var rightExpressionBody = Right.ToExpressionBody();
             var rightIsInteger = Expression.TypeIs(rightExpressionBody, typeof(int));
             var rightIsString = Expression.TypeIs(rightExpressionBody, typeof(string));
             var rightIsArray = Expression.AndAlso

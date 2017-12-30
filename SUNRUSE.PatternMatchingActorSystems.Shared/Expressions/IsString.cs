@@ -27,7 +27,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             return Expression.Condition
             (
                 Expression.TypeIs(stringExpressionBody, typeof(Mismatch)),
-                Expression.Convert(stringExpressionBody, typeof(object)),
+                stringExpressionBody,
                 Expression.Convert(Expression.TypeIs(stringExpressionBody, typeof(string)), typeof(object))
             );
         }
