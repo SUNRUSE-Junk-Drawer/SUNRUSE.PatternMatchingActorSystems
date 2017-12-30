@@ -9,6 +9,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
     public interface IExpression
     {
         /// <summary>Generates an <see cref="Expression" /> from <see langword="this" /> <see cref="IExpression" />.</summary>
+        /// <remarks>If the result is in any way typed, it should be cast to <see cref="object" /> as other <see cref="IExpression" /> implementations will expect this.</remarks>
         /// <returns>An <see cref="Expression" /> generated from <see langword="this" /> <see cref="IExpression" />.</returns>
         Expression ToExpressionBody();
     }
