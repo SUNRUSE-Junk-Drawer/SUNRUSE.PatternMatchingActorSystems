@@ -32,7 +32,12 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             True,
             EmptyMap,
             NonEmptyMap,
-            Guid
+            Guid,
+            ZeroInteger,
+            PositiveInteger,
+            LargePositiveInteger,
+            NegativeInteger,
+            LargeNegativeInteger
         }
 
         public static readonly ImmutableDictionary<TestData, object> TestDataValues = ImmutableDictionary<TestData, object>.Empty
@@ -45,6 +50,11 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             .Add(TestData.True, true)
             .Add(TestData.EmptyMap, ImmutableDictionary<string, object>.Empty)
             .Add(TestData.NonEmptyMap, ImmutableDictionary<string, object>.Empty.Add("Test Item Key A", "Test Item Value A").Add("Test Item Key B", "Test Item Value B").Add("Test Item Key C", "Test Item Value C").Add("Test Item Key D", "Test Item Value D"))
-            .Add(TestData.Guid, new Guid("e7a5f561-afa0-44ac-9823-ca6c6ff659a3"));
+            .Add(TestData.Guid, new Guid("e7a5f561-afa0-44ac-9823-ca6c6ff659a3"))
+            .Add(TestData.ZeroInteger, 0)
+            .Add(TestData.PositiveInteger, 4)
+            .Add(TestData.LargePositiveInteger, 19)
+            .Add(TestData.NegativeInteger, -5)
+            .Add(TestData.LargeNegativeInteger, -17);
     }
 }

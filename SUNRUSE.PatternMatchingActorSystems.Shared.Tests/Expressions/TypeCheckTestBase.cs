@@ -26,6 +26,11 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         [InlineData(ExpressionMock.TestData.EmptyMap)]
         [InlineData(ExpressionMock.TestData.NonEmptyMap)]
         [InlineData(ExpressionMock.TestData.Guid)]
+        [InlineData(ExpressionMock.TestData.ZeroInteger)]
+        [InlineData(ExpressionMock.TestData.PositiveInteger)]
+        [InlineData(ExpressionMock.TestData.LargePositiveInteger)]
+        [InlineData(ExpressionMock.TestData.NegativeInteger)]
+        [InlineData(ExpressionMock.TestData.LargeNegativeInteger)]
         public void ToExpressionBody(ExpressionMock.TestData testData)
         {
             var expression = CreateInstance(new ExpressionMock(ExpressionMock.TestDataValues[testData]));
