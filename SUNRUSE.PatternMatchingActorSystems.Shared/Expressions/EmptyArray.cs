@@ -14,7 +14,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         /// <inheritdoc />
         public Expression ToExpressionBody()
         {
-            return Expression.Constant(Enumerable.Empty<object>());
+            return Expression.Constant(Enumerable.Empty<object>(), typeof(object));
         }
     }
 }

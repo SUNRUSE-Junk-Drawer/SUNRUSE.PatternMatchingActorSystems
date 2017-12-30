@@ -23,5 +23,15 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             var evaluated = compiled();
             Assert.Empty(evaluated);
         }
+
+        [Fact]
+        public void ToExpressionBodyTypeObject()
+        {
+            var expression = new EmptyArray();
+
+            var expressionBody = expression.ToExpressionBody();
+
+            Assert.Equal(typeof(object), expressionBody.Type);
+        }
     }
 }

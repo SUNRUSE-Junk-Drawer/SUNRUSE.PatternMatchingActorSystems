@@ -44,6 +44,31 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             Assert.Equal(ReturnsTrueFor.Contains(testData), evaluated);
         }
 
+        [Theory]
+        [InlineData(ExpressionMock.TestData.Null)]
+        [InlineData(ExpressionMock.TestData.EmptyString)]
+        [InlineData(ExpressionMock.TestData.NonEmptyString)]
+        [InlineData(ExpressionMock.TestData.EmptyArray)]
+        [InlineData(ExpressionMock.TestData.NonEmptyArray)]
+        [InlineData(ExpressionMock.TestData.False)]
+        [InlineData(ExpressionMock.TestData.True)]
+        [InlineData(ExpressionMock.TestData.EmptyMap)]
+        [InlineData(ExpressionMock.TestData.NonEmptyMap)]
+        [InlineData(ExpressionMock.TestData.Guid)]
+        [InlineData(ExpressionMock.TestData.ZeroInteger)]
+        [InlineData(ExpressionMock.TestData.PositiveInteger)]
+        [InlineData(ExpressionMock.TestData.LargePositiveInteger)]
+        [InlineData(ExpressionMock.TestData.NegativeInteger)]
+        [InlineData(ExpressionMock.TestData.LargeNegativeInteger)]
+        public void ToExpressionBodyTypeObject(ExpressionMock.TestData testData)
+        {
+            var expression = CreateInstance(new ExpressionMock(ExpressionMock.TestDataValues[testData]));
+
+            var expressionBody = expression.ToExpressionBody();
+
+            Assert.Equal(typeof(object), expressionBody.Type);
+        }
+
         [Fact]
         public void ToExpressionBodyMismatch()
         {
@@ -55,6 +80,16 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             var wrapped = Expression.Lambda<Func<Mismatch>>(cast);
             var compiled = wrapped.Compile();
             compiled(); // Throws if not castable.
+        }
+
+        [Fact]
+        public void ToExpressionBodyMismatchTypeObject()
+        {
+            var expression = CreateInstance(new ExpressionMock(default(Mismatch)));
+
+            var expressionBody = expression.ToExpressionBody();
+
+            Assert.Equal(typeof(object), expressionBody.Type);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
         /// <inheritdoc />
         public Expression ToExpressionBody()
         {
-            return Expression.Constant(Integer);
+            return Expression.Constant(Integer, typeof(object));
         }
     }
 }

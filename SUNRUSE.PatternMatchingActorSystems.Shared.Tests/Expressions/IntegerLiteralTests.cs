@@ -23,5 +23,15 @@ namespace SUNRUSE.PatternMatchingActorSystems.Shared.Expressions
             var evaluated = compiled();
             Assert.Equal(235455, evaluated);
         }
+
+        [Fact]
+        public void ToExpressionBodyTypeObject()
+        {
+            var expression = new IntegerLiteral(235455);
+
+            var expressionBody = expression.ToExpressionBody();
+
+            Assert.Equal(typeof(object), expressionBody.Type);
+        }
     }
 }
